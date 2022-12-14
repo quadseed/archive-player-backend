@@ -14,9 +14,12 @@ func main() {
 
 	mux.HandleFunc("/", handler.RootHandler)
 
+	corsConfig := CorsConfig()
+	handler := corsConfig.Handler(mux)
+
 	server := &http.Server{
 		Addr:    ":8000",
-		Handler: mux,
+		Handler: handler,
 	}
 
 	log.Fatal(server.ListenAndServe())
