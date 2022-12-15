@@ -1,17 +1,19 @@
 package main
 
-import "github.com/rs/cors"
+import (
+	"github.com/rs/cors"
+	"net/http"
+)
 
 func CorsConfig() *cors.Cors {
 	return cors.New(cors.Options{
 		AllowedOrigins: []string{
 			"http://localhost:8000",
-			"https://localhost:8000",
 		},
 		AllowedMethods: []string{
-			"GET",
-			"POST",
-			"DELETE",
+			http.MethodGet,
+			http.MethodPost,
+			http.MethodDelete,
 		},
 		AllowCredentials: true,
 	})
